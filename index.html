@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xantilly's Custom Pizza Order</title>
+    <script src="JS/script.js"></script>
+    <script src="JS/arrs.js"></script>
+    <link href="CSS/style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+        <h1> Build Your Perfect Pizza</h1>
+   </header>
+    <main>
+        <form id="pizzaOrder">
+           <h3> Delivery Information</h3>
+            <fieldset id="deliveryInfo">
+               Name: <input id="name" type="text"  onblur="Valid.name()"> <br>
+               Address Type: <select id="addressT" oninput="Valid.adType()">
+                                <option></option>                      
+                            </select> <input type="Text" id="typeOther" style="display: none"> <br>
+               Street address:<input id="streetAd" type="text" onblur="Valid.streetAd()"><br> 
+               Appt., Ste, Room: <input id="number"> <br>
+               City: <input id="city" type="text" onblur="Valid.cityCheck()"> <br>
+               State:<select id="state">
+                       <option> </option>
+                     </select> <br>
+               Zip Code: <input id="zipCode" onblur="Valid.zipCheck()" > <br>
+               Phone Number:<input id="pNumber" onblur="Valid.phoneCheck()"> <br>
+               E-mail: <input id="email" onblur="Valid.eMailCheck()"> <br>
+               
+            </fieldset>
+            <button id="next1" type="button">Next</button>
+            
+            <h3>Order Details</h3>
+            
+            <fieldset id="orderDeets">
+               <h4>Pick the dough</h4>
+                 <div id="doughOpt">
+                        <input type="radio" name="Dough" value="Hand Tossed"> Hand Tossed
+                       <input type="radio" name="Dough" value="Thin Crust"> Thin Crust
+                       <input type="radio" name="Dough" value="New York Style"> New York Style
+                       <input type="radio" name="Dough" value="Gluten Free">  Gluten Free
+                </div> 
+                <div>
+                   <select id="size">
+                      <option>Please select a size</option>
+                      </select>
+                           
+                </div>
+                <div id="cheeseOptions">
+                   <h4>Pick your Cheese</h4>
+                       <select id="cheeseOpt">
+                         <option>Light</option>
+                         <option>Normal</option>
+                         <option>Extra</option>
+                         <option>Double</option>
+                       </select>
+               </div> 
+               <div id="sauceOptions">
+                    <h4>Now pick a Sauce</h4>
+                       <select id="SauceOpt">
+                         <option>Regular Tomatoe Sauce</option>
+                         <option>Hearty Tomatoe Sauce</option>
+                         <option>BBQ</option>
+                       </select>
+               </div>         
+               <div id="toppings">
+                  <h4>Chose toppings</h4>
+                  <p>Meats</p>
+                   <input type="checkbox" name="toppings" value="Pepperoni"> Pepperoni
+                   <input type="checkbox" name="toppings" value="Sausage"> Sausage
+                   <input type="checkbox" name="toppings" value="Ham"> Ham
+                   <input type="checkbox" name="toppings" value="Bacon"> Bacon
+                   <input type="checkbox" name="toppings" value="Salami"> Salami
+                  <p>Veggies</p>
+                   <input type="checkbox" name="toppings" value="pepers"> Pepers
+                   <input type="checkbox" name="toppings" value="olives"> Olives
+                   <input type="checkbox" name="toppings" value="jalapenos"> Jalapeños
+                   <input type="checkbox" name="toppings" value="mushrooms"> Mushrooms
+                   <input type="checkbox" name="toppings" value="pineaple"> Pineaple
+                   <input type="checkbox" name="toppings" value="onions"> Onions
+               </div>
+               <button id="goToPay" type="button"> Finished Building Pizza</button>
+            </fieldset>
+            
+            
+            <h3>Payment Details</h3>
+            <fieldset id="billingInfo">
+               <h4>Billing Address</h4>
+               <input type="checkbox" id="sameAsShip"> Same as shipping <br>
+                Name  <input id="billName" type="text"> <br>
+
+               Street address <input id="billStreetAd" type="text"><br> 
+               Appartment, Suite, or Room Number <input id="billNumber"> <br>
+               City  <input id="billCity" type="text"> <br>
+               State <select id="billState">
+                       <option></option>
+                       </select> <br>
+               Zip Code <input id="billZipCode"> <br>
+          
+               <h3>Credit Card Info</h3>
+               Card Number     <input id="ccNumber">  <br>
+               cvc Number      <input id="billCVC"> <br>
+               Expiration Date <select id="month">
+                                   <option>Select Month</option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                    <option>05</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>08</option>
+                                    <option>09</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select> <br>
+               Year           <select id="year">
+                                   <option>Select Year</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    <option>2025</option>
+                                    <option>2026</option>
+                                    <option>2027</option>
+                                    <option>2028</option>
+                                    <option>2029</option>
+                                    <option>2030</option>
+                                    <option>2031</option>
+                              </select> <br>
+               <button id="finish" class="button" type="submit">Charge the Card</button>
+            </fieldset>
+            
+        </form>
+        <div id="totalDisplay">
+          <h3>Order Summary</h3>
+           <h4 id="list"></h4>
+            <ul id="urOrder">
+                <li id="urDough"></li>
+                <li id="urCheese"></li>
+                <li id="urSauce"></li>
+                <li id="urToppings"></li>
+            </ul> 
+            <p id="p2"></p>
+            <p id="p3"></p>
+        </div>
+    </main>
+</body>
+</html>

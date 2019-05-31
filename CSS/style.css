@@ -1,0 +1,67 @@
+body {
+    font-family: "helvetica", sans-serif;
+    line-height: 2em;
+    width: 100%;
+    margin: 10px auto;
+    background: url(../images/Pizzabground-1.jpg) rgb(12, 18, 21) no-repeat fixed top right;
+    background-size: contain;
+    
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#totalDisplay {
+    position: fixed;
+    top: 60px;
+    left: 600px;
+    height: auto;
+    max-width: 300px;
+    background-color: aliceblue;
+    border-radius: 0 15px 0 30px;
+    border: solid 5px Red;
+    padding: 5px;
+    margin: 10px;
+}
+
+button {
+    margin: 15px auto;
+    width: 250px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: orangered;
+}
+
+form {
+    max-width: 350px;
+    margin: auto;
+    height: auto;
+    background-color: rgba(254, 235, 184, .7);
+    border-radius: 25px;
+    padding: 10px;
+    line-height: 1em;
+}
+
+fieldset {
+    border-radius: 30px;
+    padding: 15px;
+}
+
+#p2 {
+    color: red;
+    font-weight: 700;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+ul {
+    list-style-type:circle;
+}
