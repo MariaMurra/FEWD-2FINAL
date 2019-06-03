@@ -188,6 +188,8 @@ function showDeets() {
         $("orderDeets").setAttribute("class", "show");
         $("deliveryInfo").disabled = true;
         window.location.hash = "orderDeets";
+        $("urCheese").textContent = $("cheeseOpt").value + " cheese";
+        $("urSauce").textContent = $("SauceOpt").value + " sauce";
     });
 }
 
@@ -380,12 +382,12 @@ function writeOrder() {
         
     });
     //-------------cheese selection---------------------
-    $("urCheese").textContent = $("cheeseOpt").value + " cheese";
+    
     $("cheeseOpt").addEventListener("click", function () {
         $("urCheese").textContent = $("cheeseOpt").value + " cheese";
     });
     //------------Sauce selection------------------------
-    $("urSauce").textContent = $("SauceOpt").value + " sauce";
+    
     $("SauceOpt").addEventListener("click", function () {
         $("urSauce").textContent = $("SauceOpt").value + " sauce";
     });
@@ -464,7 +466,8 @@ function validatePayInfo() {
     "use strict";
     var nameRx = /^[A-Za-z\s]+$/,
         addressRegEx = /^[a-zA-Z0-9\s,.'\-]{3,}$/;
-//        numRegExp = /^[0-9]+$/,
+        
+//        ccvRegex = /^[0-9]{3}$/;
     $("billName").addEventListener("blur", function () {
         if (nameRx.test($("billName").value) === true) {
             $("p2").innerText = " ";
@@ -507,34 +510,47 @@ function validatePayInfo() {
             return true;
         }
     });
+}
 
-    $("billCVC").addEventListener("blur", function () {
-        if (/^[0-9]{3,4}$/.test($("billCVC")) === true) {
+function checkDnCCV() {
+    "use strict";
+    
+    //------------------Check CVC for length---------------->
+    $("billCVC").addEventListener("input", function () {
+        var clength = $("billCVC").value;
+        if (clength.length < 3 || clength.length > 4) {
             $("p2").innerText = "CVC is not valid";
-            $("billZipCode").focus();
-            return false;
-        } else {
-            $("p2").innerText = " ";
-            return true;
-        }
-    });
-    $("year").addEventListener("click", function () {
-        var today = new Date(),
-            month = today.getMonth(),
-            year = today.getYear(),
-            monthInput = $("month").value,
-            yearInput = $("year").value;
-        /*if (year === yearInput && monthInput < month) {$("p2").innerHTML = 'Please select a valid date';window.console.log(year + " " + yearInput + " " + month + " " + monthInput);
+            $("billCVC").focus();
+            $("finish").disabled = true;
             return false;
         } else {
             $("p2").innerHTML = " ";
+            $("finish").disabled = false;
             return true;
-        0}*/
-        window.console.log(month);
+        }
+    });
+    
+    //------------------Checking Date is not past due------------------>
+    $("year").addEventListener("input", function () {
+        var today = new Date(),
+            month = today.getMonth() + 1,
+            year = today.getFullYear(),
+            monthInput = Number($("month").value),
+            yearInput = Number($("year").value);
+        
+        if (year === yearInput && month > monthInput) {
+            $("p2").innerHTML = 'Please select a valid date';
+            $("month").focus();
+            $("finish").disabled = true;
+            return false;
+        } else {
+            $("p2").innerHTML = " ";
+            $("finish").disabled = false;
+            return true;
+        }
     });
 }
-
-//----------------------LUHN FORMULA------------------------------------->
+//----------------------LUHN FORMULA----------------------------------->
 function luhnCheck() {
     "use strict";
     var userNumInput = document.getElementById("ccNumber"),
@@ -584,17 +600,21 @@ function luhnCheck() {
     return validCard;
 }
 
+
+
+//---------------DISABLE TOGGLE THE PAY BUTTON----------->
 function showPayButton() {
     "use strict";
     var inputs = $("billingInfo").querySelectorAll('input'), empty = [];
-    $("finish").disabled = true;
     empty = [inputs[1], inputs[2], inputs[4], inputs[5], inputs[6], inputs[7]];
+    
     $("deliveryInfo").addEventListener("change", function () {
         for (i = 0; i < empty.length; i += 1) {
-            if (empty[i].value === " ") {
+            if (empty[i].value === " " && $("month").value === "Select Month" && $("year").value === "Select Year") {
                 $("finish").disabled = true;
             } else {
                 $("finish").disabled = false;
+                return true;
             }
         }
     });
@@ -617,21 +637,23 @@ function main() {
     showButton();
     showPayButton();
     validatePayInfo();
-    $("billName").addEventListener("blur", Valid.name);
-    $("billStreetAd").addEventListener("blur", Valid.streetAd);
-    $("billCity").addEventListener("blur", Valid.cityCheck);
-    $("billZipCode").addEventListener("blur", Valid.zipCheck);
-    
-    $("finish").addEventListener("click", function (event) {
-    
+    checkDnCCV();
+   
+    //-------------------- validating CC-NUMBER----------------->
+    $("ccNumber").addEventListener("input", function () {
         if (luhnCheck() === true) {
-            window.console.log("success!");
+            $("finish").disabled = false;
+            $("error").innerHTML = " ";
+            return true;
         } else {
-            event.preventDefault();
-            window.alert("There is something wrong with the card");
+            $("finish").disabled = true;
+            $("error").innerHTML = "There is something wrong with the card";
         }
     });
-    
+    //===--------------Confirmation ON SUBMIT--------------->
+    $("finish").addEventListener("submit", function () {
+        window.console.log("success!");
+    });
     
 }
 

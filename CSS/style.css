@@ -65,3 +65,7 @@ fieldset {
 ul {
     list-style-type:circle;
 }
+span {
+    color: red;
+    font-weight:bold;
+}

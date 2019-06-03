@@ -15,19 +15,19 @@
         <form id="pizzaOrder">
            <h3> Delivery Information</h3>
             <fieldset id="deliveryInfo">
-               Name: <input id="name" type="text"  onblur="Valid.name()"> <br>
+               &#42;Name: <input id="name" type="text"  onblur="Valid.name()"> <br>
                Address Type: <select id="addressT" oninput="Valid.adType()">
                                 <option></option>                      
                             </select> <input type="Text" id="typeOther" style="display: none"> <br>
-               Street address:<input id="streetAd" type="text" onblur="Valid.streetAd()"><br> 
+               &#42;Street address:<input id="streetAd" type="text" onblur="Valid.streetAd()"><br> 
                Appt., Ste, Room: <input id="number"> <br>
-               City: <input id="city" type="text" onblur="Valid.cityCheck()"> <br>
-               State:<select id="state">
+               &#42;City: <input id="city" type="text" onblur="Valid.cityCheck()"> <br>
+               &#42;State:<select id="state">
                        <option> </option>
                      </select> <br>
-               Zip Code: <input id="zipCode" onblur="Valid.zipCheck()" > <br>
-               Phone Number:<input id="pNumber" onblur="Valid.phoneCheck()"> <br>
-               E-mail: <input id="email" onblur="Valid.eMailCheck()"> <br>
+               &#42;Zip Code: <input id="zipCode" onblur="Valid.zipCheck()" > <br>
+               &#42;Phone Number:<input id="pNumber" onblur="Valid.phoneCheck()"> <br>
+               &#42;E-mail: <input id="email" onblur="Valid.eMailCheck()"> <br>
                
             </fieldset>
             <button id="next1" type="button">Next</button>
@@ -35,7 +35,7 @@
             <h3>Order Details</h3>
             
             <fieldset id="orderDeets">
-               <h4>Pick the dough</h4>
+               <h4>&#42;Pick the dough</h4>
                  <div id="doughOpt">
                         <input type="radio" name="Dough" value="Hand Tossed"> Hand Tossed
                        <input type="radio" name="Dough" value="Thin Crust"> Thin Crust
@@ -89,49 +89,50 @@
             <fieldset id="billingInfo">
                <h4>Billing Address</h4>
                <input type="checkbox" id="sameAsShip"> Same as shipping <br>
-                Name  <input id="billName" type="text"> <br>
+                &#42;Name  <input id="billName" type="text"> <br>
 
-               Street address <input id="billStreetAd" type="text"><br> 
+               &#42;Street address <input id="billStreetAd" type="text"><br> 
                Appartment, Suite, or Room Number <input id="billNumber"> <br>
-               City  <input id="billCity" type="text"> <br>
-               State <select id="billState">
+               &#42;City  <input id="billCity" type="text"> <br>
+               &#42;State <select id="billState">
                        <option></option>
                        </select> <br>
-               Zip Code <input id="billZipCode"> <br>
+               &#42;Zip Code <input id="billZipCode"> <br>
           
                <h3>Credit Card Info</h3>
-               Card Number     <input id="ccNumber">  <br>
-               cvc Number      <input id="billCVC"> <br>
-               Expiration Date <select id="month">
+               &#42;Card Number     <input id="ccNumber"> <span id="error"></span> <br>
+               &#42;cvc Number      <input id="billCVC"> <br>
+               &#42;Expiration Date <select id="month">
                                    <option>Select Month</option>
-                                    <option>01</option>
-                                    <option>02</option>
-                                    <option>03</option>
-                                    <option>04</option>
-                                    <option>05</option>
-                                    <option>06</option>
-                                    <option>07</option>
-                                    <option>08</option>
-                                    <option>09</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6-">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9
+                                    ">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
                                 </select> <br>
-               Year           <select id="year">
+               &#42;Year           <select id="year">
                                    <option>Select Year</option>
-                                    <option>2019</option>
-                                    <option>2020</option>
-                                    <option>2021</option>
-                                    <option>2022</option>
-                                    <option>2023</option>
-                                    <option>2024</option>
-                                    <option>2025</option>
-                                    <option>2026</option>
-                                    <option>2027</option>
-                                    <option>2028</option>
-                                    <option>2029</option>
-                                    <option>2030</option>
-                                    <option>2031</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>
                               </select> <br>
                <button id="finish" class="button" type="submit">Charge the Card</button>
             </fieldset>
